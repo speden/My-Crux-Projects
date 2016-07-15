@@ -1,0 +1,19 @@
+# Description: Audacious is an open source audio player.
+# URL: http://audacious-media-player.org/
+# Maintainer: Stephen Peetin, saptech at gmail dot com
+# Depends on: GTK+-2.24.30 or Qt-5.7.0 (or both), libxml2-2.9.4 (plugins), Xorg build environment (plugins), and X Window System (runtime)
+
+
+name=audacious
+version=3.7.2
+release=1
+source=(http://distfiles.audacious-media-player.org/$name-$version.tar.bz2)
+
+
+build() {
+  cd $name-$version
+  ./configure --prefix=/usr --enable-gtk
+  make
+  make DESTDIR=$PKG install
+  rm -rf $PKG/usr/info
+}
